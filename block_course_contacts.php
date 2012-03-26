@@ -37,6 +37,7 @@ class block_course_contacts extends block_base {
             continue;
           }
 
+	  echo html_writer::start_tag('div', array('class' => 'person'));
 	  $seen[] = $contact->id;
           echo $OUTPUT->user_picture($contact, array('class' => 'profilepicture'));
 
@@ -47,7 +48,7 @@ class block_course_contacts extends block_base {
 	  $link = new moodle_url('/message/index.php', array('id' => $contact->id));
 	  $icon = new pix_icon('t/message', get_string('messageselectadd'));
           echo html_writer::tag('div',
-                 html_writer::link($link->out(), get_string('messageselectadd')) . '&nbsp' .
+                 html_writer::link($link->out(), get_string('messageselectadd')) . '&nbsp;' .
 	         html_writer::link($link->out(), $OUTPUT->render($icon)),
 	         array('class' => 'message')
           );
@@ -75,6 +76,7 @@ class block_course_contacts extends block_base {
             );
           }
 	   
+/*
           if ($fields = $DB->get_records('user_info_field')) {
             foreach ($fields as $field) {
               require_once($CFG->dirroot.'/user/profile/field/'.$field->datatype.'/field.class.php');
@@ -87,9 +89,12 @@ class block_course_contacts extends block_base {
               }
             }
           }
+*/
+          echo html_writer::end_tag('div');	
         }
       }
       $this->content->text = ob_get_contents();
+
       ob_end_clean();
 
       return $this->content;
