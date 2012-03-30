@@ -41,13 +41,15 @@ class block_course_contacts extends block_base {
 	  $seen[] = $contact->id;
           echo $OUTPUT->user_picture($contact, array('class' => 'profilepicture'));
 
-          $record = $DB->get_record('user', array('id' => $contact->id));
-	  echo html_writer::tag('span', get_string('fullnamedisplay', '', $contact),
-	         array('class' => 'fullname'));
+	  $record = $DB->get_record('user', array('id' => $contact->id));
+	  echo html_writer::tag('h3', get_string('fullnamedisplay', '', $contact),
+	         array('class' => 'person-fullname'));
 
+	  echo html_writer::start_tag('ul', array('class' => 'person-contacts'));
+	  
 	  $link = new moodle_url('/message/index.php', array('id' => $contact->id));
 	  $icon = new pix_icon('t/message', get_string('messageselectadd'));
-          echo html_writer::tag('div',
+          echo html_writer::tag('li',
                  html_writer::link($link->out(), get_string('messageselectadd')) . '&nbsp;' .
 	         html_writer::link($link->out(), $OUTPUT->render($icon)),
 	         array('class' => 'message')
@@ -56,7 +58,7 @@ class block_course_contacts extends block_base {
           if ($record->skype && !isset($hiddenfields['icqnumber'])) {
 	    $link = 'callto:' . $record->skype;
             $icon = new moodle_url('http://mystatus.skype.com/smallicon/' . $record->skype); 
-            echo html_writer::tag('div',
+            echo html_writer::tag('li',
                    get_string('skypeid') . ':&nbsp' .
                    html_writer::link($link, $record->skype) . '&nbsp' .
 	           html_writer::empty_tag('img', array('src' => $icon, 'alt' => get_string('status'))),
@@ -68,7 +70,7 @@ class block_course_contacts extends block_base {
 	    $link = new moodle_url('http://web.icq.com/wwp', array('uin' => $record->icq));
             $icon = new moodle_url('http://web.icq.com/whitepages/online', 
                           array('uin' => $record->icq, 'img' => 5));
-            echo html_writer::tag('div',
+            echo html_writer::tag('li',
                    get_string('icqnumber') . ':&nbsp' .
                    html_writer::link($link, $record->icq) . '&nbsp' .
 	           html_writer::empty_tag('img', array('src' => $icon, 'alt' => get_string('status'))),
@@ -90,6 +92,7 @@ class block_course_contacts extends block_base {
             }
           }
 */
+	  echo html_writer::end_tag('ul');
           echo html_writer::end_tag('div');	
         }
       }
