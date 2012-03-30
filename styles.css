@@ -1,3 +1,14 @@
-.block_course_contacts img.profilepicture {margin-right: 5px; float: left;}
-.block_course_contacts .person {margin-bottom: 18px;}
-.block_course_contacts .message {clear: left;}
+.block_course_contacts .person {
+    margin-bottom: 18px;
+    }
+.block_course_contacts .person-contacts {
+    clear:both;
+    zoom:1;
+    }
+.block_course_contacts .person-fullname {
+    margin:0;
+    }
+.block_course_contacts .profilepicture {
+    margin-right: 5px;
+    float: left;
+    }
