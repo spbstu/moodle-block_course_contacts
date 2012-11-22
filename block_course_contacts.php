@@ -42,8 +42,7 @@ class block_course_contacts extends block_base {
           echo $OUTPUT->user_picture($contact, array('class' => 'profilepicture'));
 
 	  $record = $DB->get_record('user', array('id' => $contact->id));
-	  echo html_writer::tag('h3', get_string('fullnamedisplay', '', $contact),
-	         array('class' => 'person-fullname'));
+	  echo html_writer::tag('h3', fullname($contact), array('class' => 'person-fullname'));
 
 	  echo html_writer::start_tag('ul', array('class' => 'person-contacts'));
 	  
